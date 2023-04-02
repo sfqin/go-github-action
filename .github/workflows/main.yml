@@ -1,1 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+# 取个ci流程的名字
+name: Study-CI
+
+on:
+  # 只有push到master分支上才能触发这个action
+  push:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Install Go and Run Code Linting
+        uses: actions/setup-go@v4.0.0 #虚拟环境搭建go环境
+        with:
+          go-version: 1.18 #指定1.18版本
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: go run main.go
 
