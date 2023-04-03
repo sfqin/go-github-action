@@ -33,4 +33,12 @@ jobs:
         run: go build -o main
       - name: Go Run
         run: ./main
+      - name: Ssh Romote Commands
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: cat readme.md
 
